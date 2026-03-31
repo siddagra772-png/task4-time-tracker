@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Weekly Report</h1>
+  <ul id="report"></ul>
+
+  <script>
+    fetch("http://localhost:5000/data")
+      .then(res => res.json())
+      .then(data => {
+        let report = document.getElementById("report");
+
+        data.forEach(item => {
+          let li = document.createElement("li");
+          li.textContent = `${item.site} - ${Math.floor(item.time/1000)}s`;
+          report.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
